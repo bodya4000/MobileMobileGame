@@ -1,5 +1,11 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
+import { LogBox } from 'react-native';
 
 export default function RootLayout() {
-  return <Stack />;
+	LogBox.ignoreAllLogs();
+	return (
+		<Stack>
+			<Stack.Screen options={{ headerShown: false }} name='index' />
+		</Stack>
+	);
 }

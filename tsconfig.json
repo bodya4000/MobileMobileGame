@@ -6,8 +6,11 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@api/*": ["./src/api/*"],
+			"@types/*": ["./src/types/*"],
+			"@zustand/*": ["./src/zustand/*"],
 			"@services/*": ["./src/api/services/*"],
-			"@assets/*": ["./src/assets/*"],
+			"@images/*": ["./src/assets/images/*"],
+			"@fonts/*": ["./src/assets/fonts/*"],
 			"@components/*": ["./src/components/*"],
 			"@constants/*": ["./src/constants/*"],
 			"@helpers*": ["./src/helpers/*"],

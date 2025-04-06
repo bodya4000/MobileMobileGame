@@ -1,10 +1,15 @@
-import { Header } from '@/components';
+import { Header } from '@/components/Root';
+import { GameService } from '@/services';
+import bg from '@images/Game_tiger.png';
 import { Image, StyleSheet, View } from 'react-native';
 
 export default function Root() {
+	const game = GameService.initGame();
+	console.log(game);
+
 	return (
 		<View style={[styles.layout]}>
-			<Image source={require('../assets/images/Game_tiger.png')} style={styles.bg}></Image>
+			<Image source={bg} style={styles.bg}></Image>
 
 			<Header />
 		</View>

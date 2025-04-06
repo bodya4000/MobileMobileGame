@@ -1,7 +1,8 @@
 import { Header } from '@/components/Root';
+import GameBox from '@/components/Root/GameBox/GameBox';
 import { GameService } from '@/services';
 import bg from '@images/Game_tiger.png';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, View } from 'react-native';
 
 export default function Root() {
 	const game = GameService.initGame();
@@ -9,9 +10,11 @@ export default function Root() {
 
 	return (
 		<View style={[styles.layout]}>
-			<Image source={bg} style={styles.bg}></Image>
+			<StatusBar barStyle={'light-content'} />
 
+			<Image source={bg} style={styles.bg}></Image>
 			<Header />
+			<GameBox />
 		</View>
 	);
 }

@@ -5,9 +5,6 @@ import bg from '@images/Game_tiger.png';
 import { Image, StatusBar, StyleSheet, View } from 'react-native';
 
 export default function Game() {
-	const game = GameService.initGame();
-	console.log(game);
-
 	return (
 		<View style={[styles.layout]}>
 			<StatusBar barStyle={'light-content'} />

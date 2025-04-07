@@ -1,11 +1,16 @@
 import useAppState from '@/zustand/store';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import CardFlip from './CardFlip';
 
 const GameBox = () => {
 	const { game, currentCards, foundPairs, flipCard } = useAppState();
+	const [won, setWon] = useState(false);
 	const gameList = useMemo(() => game.flat(), [game]);
+
+	useEffect(() => {
+		if (foundPairs.length == gameList.length / 2) setWon(true);
+	}, [gameList, foundPairs]);
 
 	return (
 		<View style={styles.layout}>

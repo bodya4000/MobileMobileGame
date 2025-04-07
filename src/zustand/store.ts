@@ -3,49 +3,59 @@ import { Card } from '@/types/Card';
 import { create } from 'zustand';
 
 interface AppState {
-  game: Card[][];
-  currentCards: Card[];
-  foundPairs: [Card, Card][];
-  flipCard: (card: Card) => void;
+	level: number;
+	game: Card[][];
+	currentCards: Card[];
+	foundPairs: [Card, Card][];
+
+	nextLevel: () => void;
+	flipCard: (card: Card) => void;
 }
 
 const useAppState = create<AppState>((set, get) => ({
-  game: GameService.initGame(),
-  currentCards: [],
-  foundPairs: [],
+	level: 1,
+	game: GameService.initGame(),
+	currentCards: [],
+	foundPairs: [],
 
-  flipCard: (card: Card) => {
-    const { currentCards, foundPairs } = get();
+	nextLevel: () => {
+		set({
+			game: GameService.initGame(),
+			level: get().level+1,
+			currentCards:[],
+			foundPairs: [],
+		});
+	},
 
-    // Якщо вже 2 вибрано — ігноруємо
-    if (currentCards.length === 2) return;
+	flipCard: (card: Card) => {
+		const { currentCards, foundPairs } = get();
 
-    // Якщо картка вже знайдена
-    const isAlreadyFound = foundPairs.some(
-      ([a, b]) =>
-        (a.x === card.x && a.y === card.y) || (b.x === card.x && b.y === card.y)
-    );
-    if (isAlreadyFound) return;
+		if (currentCards.length === 2) return;
 
-    const newSelected = [...currentCards, card];
+		const isAlreadyFound = foundPairs.some(
+			([a, b]) => (a.x === card.x && a.y === card.y) || (b.x === card.x && b.y === card.y)
+		);
+		if (isAlreadyFound) return;
 
-    if (newSelected.length === 2) {
-      const [first, second] = newSelected;
-      const isMatch = first.model === second.model;
+		const newSelected = [...currentCards, card];
 
-      if (isMatch) {
-        set({
-          currentCards: [],
-          foundPairs: [...foundPairs, [first, second]],
-        });
-      } else {
-        set({ currentCards: newSelected });
-        setTimeout(() => set({ currentCards: [] }), 1000); // flip back
-      }
-    } else {
-      set({ currentCards: newSelected });
-    }
-  },
+		if (newSelected.length === 2) {
+			const [first, second] = newSelected;
+			const isMatch = first.model === second.model;
+
+			if (isMatch) {
+				set({
+					currentCards: [],
+					foundPairs: [...foundPairs, [first, second]],
+				});
+			} else {
+				set({ currentCards: newSelected });
+				setTimeout(() => set({ currentCards: [] }), 1000);
+			}
+		} else {
+			set({ currentCards: newSelected });
+		}
+	},
 }));
 
 export default useAppState;

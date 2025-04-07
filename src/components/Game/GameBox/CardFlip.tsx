@@ -4,8 +4,7 @@ import useAppState from '@/zustand/store';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
-import useOpenAnimation from '@/hooks/useOpenAnimation';
-import usePickCardAnimation from '@/hooks/usePickCardAnimation';
+import { useOpenAnimation, usePickCardAnimation } from '@/hooks';
 import back from '@images/back.png';
 import noodles from '@images/noodles.png';
 import temple from '@images/temple.png';
@@ -55,7 +54,7 @@ const CardFlip = ({ item }: Props) => {
 	});
 
 	return (
-		<Pressable style={styles.cardContainer} onPress={() => flipCard(item)}>
+		<Pressable style={[styles.cardContainer]} onPress={() => flipCard(item)}>
 			<Animated.View style={[styles.card, frontStyle]}>
 				<Image source={back} style={styles.image} resizeMode='cover' />
 			</Animated.View>
@@ -68,7 +67,6 @@ const CardFlip = ({ item }: Props) => {
 
 const styles = StyleSheet.create({
 	cardContainer: {
-		flexBasis: 150,
 		justifyContent: 'center',
 		alignItems: 'center',
 		aspectRatio: 1,

@@ -7,22 +7,31 @@ interface AppState {
 	game: Card[][];
 	currentCards: Card[];
 	foundPairs: [Card, Card][];
+	won: boolean;
 
 	nextLevel: () => void;
+	setWon: (value: boolean) => void;
 	flipCard: (card: Card) => void;
 }
 
 const useAppState = create<AppState>((set, get) => ({
 	level: 1,
-	game: GameService.initGame(),
+	game: GameService.initGame(1),
 	currentCards: [],
 	foundPairs: [],
+	won: false,
+
+	checkIfWon: () => {},
+
+	setWon: (value: boolean) => {
+		set({ won: value });
+	},
 
 	nextLevel: () => {
 		set({
-			game: GameService.initGame(),
-			level: get().level+1,
-			currentCards:[],
+			game: GameService.initGame(get().level + 1),
+			level: get().level + 1,
+			currentCards: [],
 			foundPairs: [],
 		});
 	},

@@ -1,28 +1,44 @@
+import { LevelResources } from '@/constants/LevelResouerces';
+import { useNextLevel, useWinCheck } from '@/hooks';
 import useAppState from '@/zustand/store';
-import { useEffect, useMemo, useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { useMemo } from 'react';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
 import CardFlip from './CardFlip';
 
+const screenWidth = Dimensions.get('window').width;
+
 const GameBox = () => {
-	const { game, foundPairs } = useAppState();
-	const [won, setWon] = useState(false);
+	const { game, level } = useAppState();
 	const gameList = useMemo(() => game.flat(), [game]);
 
-	useEffect(() => {
-		if (foundPairs.length == gameList.length / 2) {
-			alert('yuo won')
-			setWon(true);
-		}
-	}, [gameList, foundPairs]);
+	const { cols, rows } = LevelResources[level];
+	const spacing = 10;
+	const totalSpacing = spacing * (cols + 1);
+	const cardWidth = (screenWidth - totalSpacing) / ((cols+rows)/2);
+
+	useWinCheck({ gameList });
+	useNextLevel();
 
 	return (
 		<View style={styles.layout}>
 			<FlatList
+				key={`grid-cols-${cols}`}
 				data={gameList}
-				numColumns={2}
+				numColumns={cols}
+				scrollEnabled={false}
 				keyExtractor={(item, index) => index.toString()}
-				contentContainerStyle={{ marginTop: 50 }}
-				renderItem={({ item }) => <CardFlip item={item} />}
+				contentContainerStyle={{
+					flexGrow: 1,
+					justifyContent: 'center',
+					alignItems: 'center',
+					padding: spacing,
+				}}
+				columnWrapperStyle={{ gap: spacing }}
+				renderItem={({ item }) => (
+					<View style={{ width: cardWidth, aspectRatio: 1 }}>
+						<CardFlip item={item} />
+					</View>
+				)}
 			/>
 		</View>
 	);
@@ -31,8 +47,6 @@ const GameBox = () => {
 const styles = StyleSheet.create({
 	layout: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 });
 

@@ -2,6 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import useAppState from '@/zustand/store';
 import arrowImg from '@images/back-arrow.png';
 import heartImg from '@images/heart.png';
 import infoImg from '@images/info.png';
@@ -22,6 +23,7 @@ interface Props {
 
 const Header = ({ back, heart, logo, info, points, thirdEmpty }: Props) => {
 	const { back: goBack, push } = useRouter();
+	const { level } = useAppState();
 	const insets = useSafeAreaInsets();
 	const paddingTop = insets.top;
 	return (
@@ -63,12 +65,12 @@ const Header = ({ back, heart, logo, info, points, thirdEmpty }: Props) => {
 								end={{ x: 0, y: 1 }}
 								style={[styles.header_item, styles.points]}
 							>
-								<Text style={styles.points_text}>2/8</Text>
+								<Text style={styles.points_text}>{level}/8</Text>
 							</LinearGradient>
 						</TouchableOpacity>
 					)}
 
-					{thirdEmpty && <TouchableOpacity style={styles.header_item}/>}
+					{thirdEmpty && <TouchableOpacity style={styles.header_item} />}
 				</View>
 			</LinearGradient>
 		</View>

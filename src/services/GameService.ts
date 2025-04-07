@@ -1,35 +1,23 @@
-import { Models } from '@/constants/Models';
+import { LevelResources } from '@/constants/LevelResouerces';
 import { ListHelper } from '@/helpers';
 import { Card } from '@/types/Card';
 
 class GameService {
-	private readonly ROW_LENGTH = 2;
-	private readonly COL_LENGTH = 4;
-	private readonly MODELS_LIST = [
-		Models.Tiger,
-		Models.Tiger,
-		Models.Temple,
-		Models.Temple,
-		Models.Umbrella,
-		Models.Umbrella,
-		Models.Noodles,
-		Models.Noodles,
-	];
-	initGame() {
-		const modelList = [...this.MODELS_LIST];
-		const game: Card[][] = [];
+	initGame(level: number): Card[][] {
+		const resource = LevelResources[level];
+		if (!resource) throw new Error(`Level ${level} not found`);
 
-		for (let i = 0; i < this.ROW_LENGTH; i++) {
+		const { rows, cols, models } = resource;
+		const modelList = [...models, ...models]; 
+
+		const game: Card[][] = [];
+		for (let i = 0; i < rows; i++) {
 			game[i] = [];
-			for (let j = 0; j < this.COL_LENGTH; j++) {
+			for (let j = 0; j < cols; j++) {
 				const randIdx = ListHelper.getRandIdx(modelList);
 				const model = modelList[randIdx];
 				ListHelper.removeByIdx(modelList, randIdx);
-				game[i][j] = {
-					x: i,
-					y: j,
-					model,
-				};
+				game[i][j] = { x: i, y: j, model };
 			}
 		}
 		return game;

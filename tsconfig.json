@@ -9,7 +9,7 @@
 			"@types/*": ["./src/types/*"],
 			"@zustand/*": ["./src/zustand/*"],
 			"@services/*": ["./src/api/services/*"],
-			"@images/*": ["./src/assets/images/*"],
+			"@images/*": ["./src/assets/images/game/*"],
 			"@fonts/*": ["./src/assets/fonts/*"],
 			"@components/*": ["./src/components/*"],
 			"@constants/*": ["./src/constants/*"],

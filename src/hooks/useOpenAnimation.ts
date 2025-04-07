@@ -1,3 +1,4 @@
+import useAppState from '@/zustand/store';
 import { useEffect, useState } from 'react';
 import { SharedValue, withTiming } from 'react-native-reanimated';
 
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const useOpenAnimation = ({ rotation }: Props) => {
+	const { game } = useAppState();
 	const [firstRendered, setFirstRendered] = useState(false);
 
 	useEffect(() => {
@@ -15,7 +17,7 @@ const useOpenAnimation = ({ rotation }: Props) => {
 				setFirstRendered(true);
 			}, 1000);
 		}
-	}, [firstRendered]);
+	}, [firstRendered, game]);
 
 	return { firstRendered };
 };

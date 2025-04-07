@@ -1,34 +1,35 @@
-import { Header } from '@/components/Root';
-import GameBox from '@/components/Root/GameBox/GameBox';
-import { GameService } from '@/services';
-import bg from '@images/Game_tiger.png';
-import { Image, StatusBar, StyleSheet, View } from 'react-native';
+import StartButton from '@/components/Root/StartButton';
+import logo from '@images/logo-big.png';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Image, StyleSheet, View } from 'react-native';
 
-export default function Root() {
-	const game = GameService.initGame();
-	console.log(game);
-
+const Root = () => {
 	return (
-		<View style={[styles.layout]}>
-			<StatusBar barStyle={'light-content'} />
+		<View style={styles.layout}>
+			<LinearGradient
+				colors={['#4A8CD6', '#4E5DB2', '#5A3BA3', '#541896', '#66127E', '#711280']}
+				locations={[0, 0.15, 0.35, 0.5, 0.8, 1]}
+				start={{ x: 1, y: 0 }}
+				end={{ x: 0, y: 1 }}
+				style={styles.body}
+			>
+				<Image source={logo} />
 
-			<Image source={bg} style={styles.bg}></Image>
-			<Header />
-			<GameBox />
+				<StartButton />
+			</LinearGradient>
 		</View>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	layout: {
-		position: 'relative',
 		flex: 1,
 	},
-	bg: {
+	body: {
 		flex: 1,
-		width: '100%',
-		height: '100%',
-		position: 'absolute',
-		zIndex: -1,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });
+
+export default Root;

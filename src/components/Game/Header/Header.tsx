@@ -4,8 +4,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import arrow from '@images/back-arrow.png';
 import heart from '@images/heart.png';
+import { useRouter } from 'expo-router';
 
 const Header = () => {
+	const { back } = useRouter();
 	const insets = useSafeAreaInsets();
 	const paddingTop = insets.top;
 	return (
@@ -18,7 +20,7 @@ const Header = () => {
 				style={styles.layout}
 			>
 				<View style={[styles.body, { paddingTop }]}>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => back()}>
 						<Image style={styles.header_item} resizeMode='contain' source={arrow} />
 					</TouchableOpacity>
 					<TouchableOpacity>
@@ -28,7 +30,7 @@ const Header = () => {
 					<TouchableOpacity>
 						<LinearGradient
 							colors={['#00FFB2', '#24BFC9']}
-							locations={[0, 0.56, 0.61, 1]}
+							locations={[0, 1]}
 							start={{ x: 0, y: 0 }}
 							end={{ x: 0, y: 1 }}
 							style={[styles.header_item, styles.points]}

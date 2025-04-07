@@ -1,4 +1,3 @@
-import { Models } from '@/constants/Models';
 import { Card } from '@/types/Card';
 import useAppState from '@/zustand/store';
 import { Image, Pressable, StyleSheet } from 'react-native';
@@ -10,18 +9,19 @@ import noodles from '@images/noodles.png';
 import temple from '@images/temple.png';
 import tiger from '@images/tiger.png';
 import umbrella from '@images/umbrella.png';
+import { TigerModels } from '@/constants/Models'
 
 interface Props {
 	item: Card;
 }
 
-const getImage = (model: Models) => {
+const getImage = (model: TigerModels) => {
 	switch (model) {
-		case Models.Tiger:
+		case TigerModels.Tiger:
 			return tiger;
-		case Models.Temple:
+		case TigerModels.Temple:
 			return temple;
-		case Models.Umbrella:
+		case TigerModels.Umbrella:
 			return umbrella;
 		default:
 			return noodles;

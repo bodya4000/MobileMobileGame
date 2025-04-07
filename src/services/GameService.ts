@@ -7,8 +7,8 @@ class GameService {
 		const resource = LevelResources[level];
 		if (!resource) throw new Error(`Level ${level} not found`);
 
-		const { rows, cols, models } = resource;
-		const modelList = [...models, ...models]; 
+		const { rows, cols, TigerModels } = resource;
+		const modelList = [...TigerModels, ...TigerModels];
 
 		const game: Card[][] = [];
 		for (let i = 0; i < rows; i++) {

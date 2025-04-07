@@ -1,7 +1,7 @@
-import { Models } from '@/constants/Models';
+import { TigerModels } from '@/constants/TigerModels';
 
 export interface Card {
 	readonly y: number;
 	readonly x: number;
-	readonly model: Models;
+	readonly model: TigerModels;
 }

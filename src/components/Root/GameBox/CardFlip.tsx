@@ -18,9 +18,22 @@ import umbrella from '@images/umbrella.png';
 interface Props {
 	item: Card;
 }
+const getImage = (model: Models) => {
+	switch (model) {
+		case Models.Tiger:
+			return tiger;
+		case Models.Temple:
+			return temple;
+		case Models.Umbrella:
+			return umbrella;
+		default:
+			return noodles;
+	}
+};
 
 const CardFlip = ({ item }: Props) => {
-	const { game, currentCards, foundPairs, flipCard } = useAppState();
+	const { currentCards, foundPairs, flipCard } = useAppState();
+
 	const isCardVisible = (card: any) => {
 		const isCurrent = currentCards.some(c => c.x === card.x && c.y === card.y);
 		const isFound = foundPairs.some(
@@ -29,26 +42,15 @@ const CardFlip = ({ item }: Props) => {
 		return isCurrent || isFound;
 	};
 
-	const getImage = (model: Models) => {
-		switch (model) {
-			case Models.Tiger:
-				return tiger;
-			case Models.Temple:
-				return temple;
-			case Models.Umbrella:
-				return umbrella;
-			default:
-				return noodles;
-		}
-	};
-
 	const isVisible = isCardVisible(item);
-	const rotation = useSharedValue(0);
+	const rotation = useSharedValue(180);
 
 	if (isVisible) {
 		rotation.value = withTiming(180, { duration: 300 });
 	} else {
-		rotation.value = withTiming(0, { duration: 300 });
+		setTimeout(() => {
+			rotation.value = withTiming(0, { duration: 400 });
+		}, 1000);
 	}
 
 	const frontStyle = useAnimatedStyle(() => {

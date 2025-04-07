@@ -4,12 +4,15 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import CardFlip from './CardFlip';
 
 const GameBox = () => {
-	const { game, currentCards, foundPairs, flipCard } = useAppState();
+	const { game, foundPairs } = useAppState();
 	const [won, setWon] = useState(false);
 	const gameList = useMemo(() => game.flat(), [game]);
 
 	useEffect(() => {
-		if (foundPairs.length == gameList.length / 2) setWon(true);
+		if (foundPairs.length == gameList.length / 2) {
+			alert('yuo won')
+			setWon(true);
+		}
 	}, [gameList, foundPairs]);
 
 	return (

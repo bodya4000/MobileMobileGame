@@ -14,6 +14,7 @@
 			"@components/*": ["./src/components/*"],
 			"@constants/*": ["./src/constants/*"],
 			"@helpers*": ["./src/helpers/*"],
+			"@hooks*": ["./src/hooks/*"],
 			"@screens/*": ["./src/screens/*"],
 			"@providers/*": ["./src/providers/*"],
 			"@store/*": ["./src/store/*"],

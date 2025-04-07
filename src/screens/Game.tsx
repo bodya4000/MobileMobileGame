@@ -1,4 +1,4 @@
-import { Header } from '@/components/Game';
+import { Header } from '@/components'
 import GameBox from '@/components/Game/GameBox/GameBox';
 import { GameService } from '@/services';
 import bg from '@images/Game_tiger.png';
@@ -10,7 +10,7 @@ export default function Game() {
 			<StatusBar barStyle={'light-content'} />
 
 			<Image source={bg} style={styles.bg}></Image>
-			<Header />
+			<Header back heart points/>
 			<GameBox />
 		</View>
 	);

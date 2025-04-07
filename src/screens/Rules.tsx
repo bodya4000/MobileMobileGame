@@ -1,11 +1,11 @@
-import { Header } from '@/components/Game';
+import { Header } from '@/components';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View } from 'react-native';
 
 const Rules = () => {
 	return (
 		<View style={styles.layout}>
-			<Header />
+			<Header back logo thirdEmpty/>
 			<LinearGradient
 				colors={['#4E5DB2', '#6F89D4', '#4BAAF3']}
 				locations={[0, 0.7, 1]}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		fontSize: 16,
 		fontWeight: 500,
-		letterSpacing: 2
+		letterSpacing: 2,
 	},
 });
 

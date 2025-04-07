@@ -4,17 +4,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import arrow from '@images/back-arrow.png';
 import heart from '@images/heart.png';
+import info from '@images/info.png';
 import { useRouter } from 'expo-router';
 
 const Header = () => {
-	const { back } = useRouter();
+	const { back, push } = useRouter();
 	const insets = useSafeAreaInsets();
 	const paddingTop = insets.top;
 	return (
 		<View style={[{ height: paddingTop + 60 }]}>
 			<LinearGradient
-				colors={['#43BCF0', '#4E5DB2', '#4F54AC', '#571280']}
-				locations={[0, 0.56, 0.61, 1]}
+				colors={['#4E5DB2', '#4F54AC', '#571280']}
+				locations={[0, 0.56, 1]}
 				start={{ x: 0, y: 0 }}
 				end={{ x: 0, y: 1 }}
 				style={styles.layout}
@@ -25,6 +26,10 @@ const Header = () => {
 					</TouchableOpacity>
 					<TouchableOpacity>
 						<Image style={styles.header_item} resizeMode='contain' source={heart} />
+					</TouchableOpacity>
+
+					<TouchableOpacity onPress={() => push('/rules')}>
+						<Image style={styles.header_item} resizeMode='contain' source={info} />
 					</TouchableOpacity>
 
 					<TouchableOpacity>

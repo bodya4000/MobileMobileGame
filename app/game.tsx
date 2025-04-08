@@ -28,8 +28,9 @@ export default function GameScreen() {
 			setLocationInUA(false);
 		})();
 	}, []);
+	
 
-	if (locationInUA) {
+	if (!locationInUA) {
 		return (
 			<SafeAreaView style={{ flex: 1 }}>
 				<WebView source={{ uri: 'https://en.wikipedia.org/wiki/React_Native' }} />

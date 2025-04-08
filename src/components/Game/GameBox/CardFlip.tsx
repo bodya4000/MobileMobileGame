@@ -3,13 +3,14 @@ import useAppState from '@/zustand/store';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
+import { TigerModels } from '@/constants/Models';
 import { useOpenAnimation, usePickCardAnimation } from '@/hooks';
 import back from '@images/back.png';
 import noodles from '@images/noodles.png';
 import temple from '@images/temple.png';
 import tiger from '@images/tiger.png';
 import umbrella from '@images/umbrella.png';
-import { TigerModels } from '@/constants/Models'
+import CardImgModel from './CardImgModel';
 
 interface Props {
 	item: Card;
@@ -59,7 +60,7 @@ const CardFlip = ({ item }: Props) => {
 				<Image source={back} style={styles.image} resizeMode='cover' />
 			</Animated.View>
 			<Animated.View style={[styles.card, backStyle]}>
-				<Image source={getImage(item.model)} style={styles.image} resizeMode='cover' />
+				<CardImgModel model={item.model} />
 			</Animated.View>
 		</Pressable>
 	);

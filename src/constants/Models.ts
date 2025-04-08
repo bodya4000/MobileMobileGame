@@ -1,18 +1,19 @@
 export enum TigerModels {
-	Tiger,
-	Temple,
-	Umbrella,
-	Noodles,
+	Tiger = 10,
+	Temple = 11,
+	Umbrella = 12,
+	Noodles = 13,
 }
 
 export enum ZeusModels {
-	Zeus,
-	Temple,
+	Zeus = 20,
+	Temple = 21,
 }
 
 export enum MagicModels {
-	Green,
-	Orange,
-	Red,
+	Green = 30,
+	Orange = 31,
+	Red = 32,
 }
+
 export type ModelEnum = typeof TigerModels | typeof ZeusModels | typeof MagicModels;

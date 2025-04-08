@@ -1,16 +1,18 @@
-import { Header } from '@/components'
+import { Header } from '@/components';
 import GameBox from '@/components/Game/GameBox/GameBox';
-import { GameService } from '@/services';
-import bg from '@images/Game_tiger.png';
+import { LevelResources } from '@/constants/LevelResouerces';
+import useAppState from '@/zustand/store';
 import { Image, StatusBar, StyleSheet, View } from 'react-native';
 
 export default function Game() {
+	const { level } = useAppState();
+	const { bg } = LevelResources[level];
 	return (
 		<View style={[styles.layout]}>
 			<StatusBar barStyle={'light-content'} />
 
 			<Image source={bg} style={styles.bg}></Image>
-			<Header back heart points/>
+			<Header back heart points />
 			<GameBox />
 		</View>
 	);

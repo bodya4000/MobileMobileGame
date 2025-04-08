@@ -65,7 +65,7 @@ const Header = ({ back, heart, logo, info, points, thirdEmpty }: Props) => {
 								end={{ x: 0, y: 1 }}
 								style={[styles.header_item, styles.points]}
 							>
-								<Text style={styles.points_text}>{level}/8</Text>
+								<Text style={styles.points_text}>{level}/3</Text>
 							</LinearGradient>
 						</TouchableOpacity>
 					)}

@@ -30,7 +30,8 @@ const useAppState = create<AppState>((set, get) => ({
 	nextLevel: () => {
 		set({
 			game: GameService.initGame(get().level + 1),
-			level: get().level + 1,
+			won: false,
+			level: get().level == 3 ? 1 : get().level + 1,
 			currentCards: [],
 			foundPairs: [],
 		});

@@ -2,15 +2,15 @@ import WinModal from '@/components/WinModal/WinModal';
 import { LevelResources } from '@/constants/LevelResouerces';
 import { useWinCheck } from '@/hooks';
 import useAppState from '@/zustand/store';
+import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
 import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
 import CardFlip from './CardFlip';
-import { useRouter } from 'expo-router'
 
 const screenWidth = Dimensions.get('window').width;
 
 const GameBox = () => {
-	const {replace} = useRouter()
+	const { replace } = useRouter();
 	const { game, level, won, nextLevel } = useAppState();
 	const gameList = useMemo(() => game.flat(), [game]);
 
@@ -20,7 +20,6 @@ const GameBox = () => {
 	const cardWidth = (screenWidth - totalSpacing) / ((cols + rows) / 2);
 
 	useWinCheck({ gameList });
-	// useNextLevel();
 
 	return (
 		<View style={styles.layout}>
